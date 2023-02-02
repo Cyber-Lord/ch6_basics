@@ -52,10 +52,39 @@ class _HomeState extends State<Home> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                IconButton(
+                  onPressed: (() {}),
+                  icon: Icon(Icons.flight),
+                  iconSize: 30,
+                  color: Colors.green.shade500,
+                ),
                 const ContainerWithBoxDecorationWidget(),
+                Divider(),
+                const ColumnWidget(),
+                Divider(),
+                const RowWidget(),
+                Divider(),
+                const ColumnAndRowWidgetNesting(),
               ],
             ),
           ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_a_photo),
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.lightGreen.shade100,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(Icons.play_arrow),
+            Icon(Icons.pause),
+            Icon(Icons.delete_forever),
+            Padding(padding: EdgeInsets.all(32.0))
+          ],
         ),
       ),
     );
@@ -107,6 +136,71 @@ class ContainerWithBoxDecorationWidget extends StatelessWidget {
             ),
           ),
         )
+      ],
+    );
+  }
+}
+
+class ColumnWidget extends StatelessWidget {
+  const ColumnWidget({Key, key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text("Column 1"),
+        Divider(),
+        Text("Column 2"),
+        Divider(),
+        Text("Column 3"),
+      ],
+    );
+  }
+}
+
+class RowWidget extends StatelessWidget {
+  const RowWidget({Key, key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text("Row 1"),
+        Padding(padding: EdgeInsets.all(16.0)),
+        Text("Row 2"),
+        Padding(padding: EdgeInsets.all(16.0)),
+        Text("Row 3")
+      ],
+    );
+  }
+}
+
+class ColumnAndRowWidgetNesting extends StatelessWidget {
+  const ColumnAndRowWidgetNesting({Key, key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text("Column and Row Nesting 1"),
+        Text("Column and Row Nesting 2"),
+        Text("Column and Row Nesting 3"),
+        Padding(padding: EdgeInsets.all(16.0)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("Row Nesting 1"),
+            Text("Row Nesting 2"),
+            Text("Row Nesting 3"),
+          ],
+        ),
       ],
     );
   }
